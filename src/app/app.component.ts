@@ -3,7 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { Page1 } from '../pages/page1/page1';
+import { Page1 } from '../pages/list_of_examinations_page/page1';
 import { Page2 } from '../pages/page2/page2';
 
 
