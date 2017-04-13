@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Іспити сумління</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <h3>Виберість іспит сумління</h3>
+  <ion-list>
+    <button ion-item *ngFor="let examination of examinations">
+      {{examination.name}}
+    </button>
+  </ion-list>
+</ion-content>
