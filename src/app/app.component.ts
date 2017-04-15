@@ -3,7 +3,8 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { ListOfExaminationsPage } from '../pages/list_of_examinations_page/list_of_examinations.component';
+import { ListOfExaminationsPage } from '../pages/list-of-examinations-page/list-of-examinations.component';
+import { ExaminationCardView } from '../pages/examination-card-view-page/examination-card-view.component';
 import { Page2 } from '../pages/page2/page2';
 
 
@@ -23,6 +24,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Іспити сумління', component: ListOfExaminationsPage },
+      { title: 'Card View', component: ExaminationCardView },
       { title: 'Page Two', component: Page2 }
     ];
 

@@ -10,7 +10,7 @@
 <ion-content>
   <h3>Виберість іспит сумління</h3>
   <ion-list>
-    <button ion-item *ngFor="let examination of examinations">
+    <button ion-item *ngFor="let examination of examinations" (click)="showExamination(examination)">
       {{examination.name}}
     </button>
   </ion-list>
