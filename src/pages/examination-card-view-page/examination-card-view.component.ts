@@ -4,7 +4,15 @@ import {ExaminationService} from "../../app/examination/examination.service";
 import {Examination} from "../../app/model/examination";
 
 @Component({
-  templateUrl: 'examination-card-view.html'
+  templateUrl: 'examination-card-view.html',
+  styles: [
+    `
+    .swiper-slide {
+      overflow-y: scroll;
+      /*display: block; */ 
+    }
+    `
+  ]
 })
 export class ExaminationCardView implements OnInit {
   public examination_id_key : String = "examination_id";

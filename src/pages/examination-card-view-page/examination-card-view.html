@@ -24,8 +24,8 @@
     </ion-label>
 
     <ion-list *ngIf="commandment.sins">
-      <ion-item>
-        <ion-row *ngFor="let sin of commandment.sins">
+      <ion-item *ngFor="let sin of commandment.sins">
+        <ion-row>
           <ion-col style="text-align: left">
             {{sin.name}}
           </ion-col>
@@ -35,8 +35,8 @@
         </ion-row>
       </ion-item>
     </ion-list>
-    <button ion-button color="light">Назад</button>
-    <button ion-button>Далі</button>
+    <!--<button ion-button color="light">Назад</button>
+    <button ion-button>Далі</button>-->
   </ion-slide>
 
 </ion-slides>
