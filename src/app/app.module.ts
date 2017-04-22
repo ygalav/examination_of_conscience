@@ -1,23 +1,24 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { HttpModule }    from '@angular/http';
+import {ErrorHandler, NgModule} from "@angular/core";
+import {HttpModule} from "@angular/http";
 
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import {IonicApp, IonicErrorHandler, IonicModule} from "ionic-angular";
 
-import { MyApp } from './app.component';
-import { ListOfExaminationsPage } from '../pages/list-of-examinations-page/list-of-examinations.component';
-import { ExaminationCardView } from '../pages/examination-card-view-page/examination-card-view.component';
-import { Page2 } from '../pages/page2/page2'; //TODO: Delete this page
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { ExaminationService } from "./examination/examination.service";
-import { ExaminationUrlResolverService } from "./examination/examination-url-resolver.service";
+import {MyApp} from "./app.component";
+import {ListOfExaminationsPage} from "../pages/list-of-examinations-page/list-of-examinations.component";
+import {ExaminationCardView} from "../pages/examination-card-view-page/examination-card-view.component";
+import {Page2} from "../pages/page2/page2"; //TODO: Delete this page
+import {StatusBar} from "@ionic-native/status-bar";
+import {SplashScreen} from "@ionic-native/splash-screen";
+import {ExaminationService} from "./examination/examination.service";
+import {ExaminationUrlResolverService} from "./examination/examination-url-resolver.service";
+import {CommandmentView} from "./views/commandment/commandment-view.component";
 
 @NgModule({
   declarations: [
     MyApp,
     ListOfExaminationsPage,
     ExaminationCardView,
+    CommandmentView,
     Page2 //TODO: Delete this page
   ],
   imports: [
@@ -29,6 +30,7 @@ import { ExaminationUrlResolverService } from "./examination/examination-url-res
     MyApp,
     ListOfExaminationsPage,
     ExaminationCardView,
+    CommandmentView,
     Page2 //TODO: Delete this page
   ],
   providers: [

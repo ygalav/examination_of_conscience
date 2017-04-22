@@ -7,7 +7,7 @@ import {Examination} from "../../app/model/examination";
   templateUrl: 'examination-card-view.html',
   styles: [
     `
-    .swiper-slide {
+      .content {
       overflow-y: scroll;
       /*display: block; */ 
     }

@@ -6,37 +6,10 @@
     <ion-title><span *ngIf="examination">{{examination.name}}</span></ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-slides pager *ngIf="examination">
-
-  <!--<ion-slide>
-    <h2>Опис</h2>
-
-    <div *ngIf="examination.description">
-      {{examination.description}}
-    </div>
-  </ion-slide>-->
-
-  <ion-slide *ngFor="let commandment of examination.commandments">
-    <ion-label>{{commandment.name}}</ion-label>
-    <ion-label *ngIf="commandment.description">
-      {{commandment.description}}
-    </ion-label>
-
-    <ion-list *ngIf="commandment.sins">
-      <ion-item *ngFor="let sin of commandment.sins">
-        <ion-row>
-          <ion-col style="text-align: left">
-            {{sin.name}}
-          </ion-col>
-          <ion-col>
-            <button ion-button color="light">Так</button>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-    </ion-list>
-    <!--<button ion-button color="light">Назад</button>
-    <button ion-button>Далі</button>-->
-  </ion-slide>
-
-</ion-slides>
+<ion-content>
+  <ion-grid no-lines *ngIf="examination">
+    <ion-row *ngFor="let commandment of examination.commandments">
+      <eoc-commandment-view [commandment]="commandment"></eoc-commandment-view>
+    </ion-row>
+  </ion-grid>
+</ion-content>
