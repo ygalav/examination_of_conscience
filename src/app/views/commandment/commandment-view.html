@@ -2,21 +2,31 @@
   <ion-col>
     <ion-row>
       <ion-col>
-        <ion-label><h2>{{commandment.name}}</h2></ion-label>
-        <ion-label *ngIf="commandment.description">
-          <h3>
-            {{commandment.description}}
-          </h3>
-        </ion-label>
+        <ion-row>
+          <ion-col>
+            <h2>{{commandment.name}}</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h3 *ngIf="commandment.description">
+              {{commandment.description}}
+            </h3>
+          </ion-col>
+        </ion-row>
       </ion-col>
     </ion-row>
     <ion-row *ngIf="commandment.sins">
-      <ion-row *ngFor="let sin of commandment.sins">
-        <ion-col>
-          <p>{{sin.name}}</p>
-          <button ion-button color="light">Так</button>
-        </ion-col>
-      </ion-row>
+      <ion-col>
+        <ion-row *ngFor="let sin of commandment.sins">
+          <ion-col col-10>
+            <p>{{sin.name}}</p>
+          </ion-col>
+          <ion-col col-2>
+            <button ion-button color="light">Так</button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
     </ion-row>
   </ion-col>
 </ion-row>
