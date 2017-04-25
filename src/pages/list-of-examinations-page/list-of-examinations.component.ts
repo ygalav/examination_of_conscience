@@ -1,9 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 
-import {NavController, NavParams} from "ionic-angular";
+import {ModalController, NavController, NavParams} from "ionic-angular";
 import {Examination} from "../../app/model/examination";
 import {ExaminationService} from "../../app/examination/examination.service";
-import {ExaminationCardView} from "../examination-card-view-page/examination-card-view.component"; //TODO: Delete this page
+import {ExaminationCardView} from "../examination-card-view-page/examination-card-view.component";
+import {CreateConfessionModal} from "../../app/modal/create-confession-modal/create-confession.modal"; //TODO: Delete this page
 
 @Component({
   selector: 'examinations-lists',
@@ -16,6 +17,7 @@ export class ListOfExaminationsPage implements OnInit {
   constructor(
     public navCtrl: NavController,
     public navParams : NavParams,
+    public modalCtrl : ModalController,
     public examinationService: ExaminationService) {
 
   }
@@ -28,5 +30,10 @@ export class ListOfExaminationsPage implements OnInit {
     this.navCtrl.push(ExaminationCardView, {
       examination_id: examination.id
     });
+  }
+
+  showCreateConfessionModal(examination : Examination) : void {
+    var modal = this.modalCtrl.create(CreateConfessionModal);
+    modal.present();
   }
 }

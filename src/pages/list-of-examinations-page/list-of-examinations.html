@@ -8,10 +8,29 @@
 </ion-header>
 
 <ion-content>
-  <h3>Виберість іспит сумління</h3>
-  <ion-list>
-    <button ion-item *ngFor="let examination of examinations" (click)="showExamination(examination)">
-      {{examination.name}}
-    </button>
-  </ion-list>
+  <ion-grid no-padding>
+    <ion-row text-center>
+      <h3>Виберіть іспит сумління</h3>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-row  *ngFor="let examination of examinations" >
+            <ion-col ion-item>
+              <ion-row>
+                <ion-col col-10 (click)="showExamination(examination)">
+                  {{examination.name}}
+                </ion-col>
+                <ion-col col-2>
+                  <ion-icon color="secondary" name="add-circle" (click)="showCreateConfessionModal(examination)"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
 </ion-content>

@@ -1,7 +1,8 @@
 import {Commandment} from "./commandment";
-export class Cofession {
+export class Confession {
   public date : Date;
   public name: string;
-  public commandments : Commandment[];
-  public finished : boolean
+  public commandments : Commandment[] = [];
+  public parent : string;
+  public finished : boolean;
 }

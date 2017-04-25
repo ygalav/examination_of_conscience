@@ -12,6 +12,8 @@ import {SplashScreen} from "@ionic-native/splash-screen";
 import {ExaminationService} from "./examination/examination.service";
 import {ExaminationUrlResolverService} from "./examination/examination-url-resolver.service";
 import {CommandmentView} from "./views/commandment/commandment-view.component";
+import {ConfessionService} from "./service/confession.service";
+import {CreateConfessionModal} from "./modal/create-confession-modal/create-confession.modal";
 
 @NgModule({
   declarations: [
@@ -19,6 +21,9 @@ import {CommandmentView} from "./views/commandment/commandment-view.component";
     ListOfExaminationsPage,
     ExaminationCardView,
     CommandmentView,
+
+    CreateConfessionModal,
+
     Page2 //TODO: Delete this page
   ],
   imports: [
@@ -31,6 +36,9 @@ import {CommandmentView} from "./views/commandment/commandment-view.component";
     ListOfExaminationsPage,
     ExaminationCardView,
     CommandmentView,
+    //Modals
+    CreateConfessionModal,
+
     Page2 //TODO: Delete this page
   ],
   providers: [
@@ -38,7 +46,8 @@ import {CommandmentView} from "./views/commandment/commandment-view.component";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ExaminationService,
-    ExaminationUrlResolverService
+    ExaminationUrlResolverService,
+    ConfessionService
   ]
 })
 export class AppModule {}
