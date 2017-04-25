@@ -18,7 +18,7 @@
           <ion-row  *ngFor="let examination of examinations" >
             <ion-col ion-item>
               <ion-row>
-                <ion-col col-10 (click)="showExamination(examination)">
+                <ion-col col-10 (click)="showExamination(examination.id)">
                   {{examination.name}}
                 </ion-col>
                 <ion-col col-2>
@@ -42,7 +42,7 @@
         </ion-label>
       </ion-col>
       <ion-col>
-        <button ion-button outline block color="secondary">Продовжити</button>
+        <button (click)="showExamination(confession.parent, confession)" ion-button outline block color="secondary">Продовжити</button>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -10,16 +10,15 @@ import {Confession} from "../../model/confession";
 export class CommandmentView implements OnInit {
 
   @Input() commandment : Commandment;
+  @Input() confession : Confession;
   @Output() confessionChanged = new EventEmitter<Confession>();
-
-  public confession : Confession;
 
   constructor(public confessionService : ConfessionService){}
 
   ngOnInit(): void {
-    this.confessionService.getActiveConfession().then(
+    /*this.confessionService.getActiveConfession().then(
       confession => this.confession = confession
-    )
+    )*/
   }
 
   toggleCommandment(commandment : Commandment, sin : ConcreteSin) {

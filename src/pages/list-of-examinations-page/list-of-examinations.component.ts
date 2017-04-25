@@ -36,14 +36,15 @@ export class ListOfExaminationsPage implements OnInit {
     });
   }
 
-  showExamination(examination) : void {
+  showExamination(examinationId, confession) : void {
     this.navCtrl.push(ExaminationCardView, {
-      examination_id: examination.id
+      examination_id: examinationId,
+      confession: confession
     });
   }
 
   showCreateConfessionModal(examination : Examination) : void {
-    var modal = this.modalCtrl.create(CreateConfessionModal, {'examination' : examination});
+    let modal = this.modalCtrl.create(CreateConfessionModal, {'examination' : examination});
     modal.onDidDismiss(data => {
       this.confession = data.confession;
     });
