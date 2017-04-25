@@ -1,17 +1,33 @@
 import {Component} from "@angular/core";
-import {ViewController} from "ionic-angular";
+import {NavParams, ViewController} from "ionic-angular";
 import {Examination} from "../../model/examination";
+import {ConfessionService} from "../../service/confession.service";
 @Component ({
   templateUrl: 'create-confession.html'
 })
 export class CreateConfessionModal {
-  constructor(public viewCtrl : ViewController) {}
+
+  private EXAMINATION_KEY = 'examination';
+
+  constructor(
+    public viewCtrl : ViewController,
+    public params : NavParams,
+    public confessionService : ConfessionService
+  )
+  {
+    this.examination = params.get(this.EXAMINATION_KEY)
+  }
+  examination : Examination;
+  name = 'Іспит сумління';
 
   public dismiss() {
     this.viewCtrl.dismiss()
   }
 
-  public createConfession(name : string, examination : Examination) {
-    this.viewCtrl.dismiss()
+  public createConfession(name : string) {
+    this.confessionService.createConfession(name, this.examination.id).then( (confession) => {
+      let data = { 'confession' : confession};
+      this.viewCtrl.dismiss(data)
+    });
   }
 }

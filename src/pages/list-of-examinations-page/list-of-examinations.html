@@ -30,6 +30,21 @@
         </ion-list>
       </ion-col>
     </ion-row>
+    <ion-row *ngIf="confession">
+      <ion-col>
+        <h3>Приготування до сповіді</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="confession">
+      <ion-col>
+        <ion-label>
+          {{confession.name}}
+        </ion-label>
+      </ion-col>
+      <ion-col>
+        <button ion-button outline block color="secondary">Продовжити</button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 
 

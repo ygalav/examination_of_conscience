@@ -5,6 +5,7 @@ import {Injectable, OnInit} from "@angular/core";
 @Injectable()
 export class ConfessionService implements OnInit {
 
+  private CURRENT_CONFESSION_KEY : string = 'current_confession';
 
   ngOnInit(): void {
     localforage.config({
@@ -20,10 +21,17 @@ export class ConfessionService implements OnInit {
   }
 
   getActiveConfession() : Promise<Confession> {
-    return localforage.getItem('confession').catch(reason => Promise.reject(reason));
+    return localforage.getItem(this.CURRENT_CONFESSION_KEY).catch(reason => Promise.reject(reason));
   }
 
   saveConfession(confession : Confession) : Promise<Confession> {
-    return localforage.setItem('confession', confession).catch(reason => Promise.reject(reason))
+    return localforage.setItem(this.CURRENT_CONFESSION_KEY, confession).catch(reason => Promise.reject(reason))
+  }
+
+  createConfession(name : string, parentId : string) : Promise<Confession> {
+    let confession = new Confession();
+    confession.name = name;
+    confession.parent = parentId;
+    return localforage.setItem(this.CURRENT_CONFESSION_KEY, confession).catch(reason => Promise.reject(reason))
   }
 }
