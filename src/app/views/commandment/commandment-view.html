@@ -18,12 +18,13 @@
     </ion-row>
     <ion-row *ngIf="commandment.sins">
       <ion-col>
-        <ion-row *ngFor="let sin of commandment.sins">
+        <ion-row *ngFor="let sin of sins">
           <ion-col col-10>
-            <p>{{sin.name}}</p>
+            <p>{{sin.sin.name}}</p>
           </ion-col>
-          <ion-col col-2>
-            <button *ngIf="confession" ion-button color="light" (click)="toggleCommandment(commandment, sin)">Так</button>
+          <ion-col col-2 >
+            <ion-checkbox *ngIf="confession" [(ngModel)]="sin.selectedInExamination" (click)="toggleCommandment(commandment, sin.sin)" color="danger">
+            </ion-checkbox>
           </ion-col>
         </ion-row>
       </ion-col>
