@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Іспити сумління</ion-title>
+    <ion-title>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -36,16 +36,17 @@
       </ion-col>
     </ion-row>
     <ion-row *ngIf="confession">
-      <ion-col>
+      <ion-col col-5>
         <ion-label>
           {{confession.name}}
         </ion-label>
       </ion-col>
-      <ion-col>
-        <button (click)="showExamination(confession.parent, confession)" ion-button outline block color="secondary">Продовжити</button>
+      <ion-col col-3>
+        <button (click)="showExamination(confession.parent, confession)" ion-button outline block>Продовжити</button>
+      </ion-col>
+      <ion-col col-3 offset-1>
+        <button (click)="showConfession()" ion-button outline block color="secondary">Переглянути</button>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-
 </ion-content>

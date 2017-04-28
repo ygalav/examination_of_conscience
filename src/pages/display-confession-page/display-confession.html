@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Приготування до сповіді</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row *ngIf="confession">
+      <h3>{{confession.name}}</h3>
+    </ion-row>
+    <ion-row *ngIf="confession">
+      <ion-col>
+        <ion-row *ngFor="let commandment of confession.commandments">
+          <ion-col>
+            <ion-row>
+              <ion-label>
+                {{commandment.name}}
+              </ion-label>
+            </ion-row>
+            <ul>
+              <li *ngFor="let sin of commandment.sins">
+                <span>{{sin.name}}</span>
+              </li>
+            </ul>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="!confession">
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

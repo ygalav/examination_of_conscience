@@ -13,6 +13,7 @@ import {ExaminationUrlResolverService} from "./examination/examination-url-resol
 import {CommandmentView} from "./views/commandment/commandment-view.component";
 import {ConfessionService} from "./service/confession.service";
 import {CreateConfessionModal} from "./modal/create-confession-modal/create-confession.modal";
+import {DisplayConfessionComponent} from "../pages/display-confession-page/display-confession.component";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {CreateConfessionModal} from "./modal/create-confession-modal/create-conf
     ListOfExaminationsPage,
     ExaminationCardView,
     CommandmentView,
-    CreateConfessionModal
+    CreateConfessionModal,
+    DisplayConfessionComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -32,6 +34,7 @@ import {CreateConfessionModal} from "./modal/create-confession-modal/create-conf
     ListOfExaminationsPage,
     ExaminationCardView,
     CommandmentView,
+    DisplayConfessionComponent,
     //Modals
     CreateConfessionModal,
   ],
