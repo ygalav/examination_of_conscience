@@ -6,7 +6,6 @@ import {IonicApp, IonicErrorHandler, IonicModule} from "ionic-angular";
 import {MyApp} from "./app.component";
 import {ListOfExaminationsPage} from "../pages/list-of-examinations-page/list-of-examinations.component";
 import {ExaminationCardView} from "../pages/examination-card-view-page/examination-card-view.component";
-import {Page2} from "../pages/page2/page2"; //TODO: Delete this page
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
 import {ExaminationService} from "./examination/examination.service";
@@ -21,10 +20,7 @@ import {CreateConfessionModal} from "./modal/create-confession-modal/create-conf
     ListOfExaminationsPage,
     ExaminationCardView,
     CommandmentView,
-
-    CreateConfessionModal,
-
-    Page2 //TODO: Delete this page
+    CreateConfessionModal
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -38,8 +34,6 @@ import {CreateConfessionModal} from "./modal/create-confession-modal/create-conf
     CommandmentView,
     //Modals
     CreateConfessionModal,
-
-    Page2 //TODO: Delete this page
   ],
   providers: [
     StatusBar,
