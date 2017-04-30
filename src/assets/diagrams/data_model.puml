@@ -1,0 +1,32 @@
+@startuml
+
+
+Examination --> "*" Commandment
+
+Commandment --> "*" SinSubject
+
+SinSubject --> "*" ConcreteSin
+
+
+class Examination {
+  string id
+  string name
+  string description
+  Commandment[] commandments
+}
+
+class Commandment {
+  number number
+  string name
+}
+
+class SinSubject {
+  ConcreteSin[] sins
+}
+
+class ConcreteSin {
+  string name
+  string description
+}
+
+@enduml

@@ -4,6 +4,7 @@ import {ConcreteSin} from "../../model/concrete_sin";
 import {ConfessionService} from "../../service/confession.service";
 import {Confession} from "../../model/confession";
 import {SinViewDto} from "./sin-view.dto";
+import {SinSubjectViewDto} from "./sin-subject-view.dto";
 @Component({
   templateUrl: 'commandment-view.html',
   selector: 'eoc-commandment-view'
@@ -16,12 +17,22 @@ export class CommandmentView implements OnInit {
   @Output() confessionChanged = new EventEmitter<Confession>();
 
   sins : SinViewDto[] = [];
+  subjectViews : SinSubjectViewDto[] = [];
 
   constructor(public confessionService : ConfessionService){}
 
   ngOnInit(): void {
 
-    this.commandment.sins.forEach(sin => {
+    this.commandment.subjects.forEach(
+      subject => {
+        let subjectView = this.convertSubjectToDto(subject);
+        this.subjectViews.push(subjectView);
+      }
+    );
+
+
+    //TODO Remove this way
+    /*this.commandment.sins.forEach(sin => {
       let sinView = new SinViewDto;
       sinView.sin = sin;
 
@@ -29,7 +40,27 @@ export class CommandmentView implements OnInit {
         sinView.selectedInExamination = this.isSinCheckedInConfession(sin, this.commandment, this.confession);
       }
       this.sins.push(sinView);
+    });*/
+  }
+
+  private convertSubjectToDto(subject) {
+    let subjectView = new SinSubjectViewDto();
+    subjectView.name = subject.name;
+    subject.sins.forEach(sin => {
+      let sinView = this.convertSinToDto(sin);
+      subjectView.sinViews.push(sinView)
     });
+    return subjectView;
+  }
+
+  private convertSinToDto(sin) {
+    let sinView = new SinViewDto;
+    sinView.sin = sin;
+
+    if (this.confession) {
+      sinView.selectedInExamination = this.isSinCheckedInConfession(sin, this.commandment, this.confession);
+    }
+    return sinView;
   }
 
   private isSinCheckedInConfession(sin : ConcreteSin, commandment: Commandment, confession : Confession) : boolean {

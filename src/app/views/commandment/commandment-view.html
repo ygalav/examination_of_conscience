@@ -1,5 +1,5 @@
 <ion-row>
-  <ion-col>
+  <ion-col no-padding>
     <ion-row>
       <ion-col>
         <ion-row>
@@ -16,7 +16,33 @@
         </ion-row>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="commandment.sins">
+
+    <ion-row *ngIf="subjectViews">
+      <ion-col>
+        <ion-row *ngFor="let subject of subjectViews">
+          <ion-col>
+            <ion-row>
+              <h3>{{subject.name}}</h3>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-row *ngFor="let sinView of subject.sinViews">
+                  <ion-col>
+                    <p>{{sinView.sin.name}}</p>
+                  </ion-col>
+                  <ion-col col-2 *ngIf="confession">
+                    <ion-checkbox *ngIf="confession" [(ngModel)]="sinView.selectedInExamination" (click)="toggleCommandment(commandment, sinView.sin)" color="danger">
+                    </ion-checkbox>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <!--<ion-row *ngIf="commandment.sins">
       <ion-col>
         <ion-row *ngFor="let sin of sins">
           <ion-col col-10>
@@ -28,6 +54,6 @@
           </ion-col>
         </ion-row>
       </ion-col>
-    </ion-row>
+    </ion-row>-->
   </ion-col>
 </ion-row>

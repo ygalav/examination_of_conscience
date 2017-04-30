@@ -9,7 +9,7 @@
 <ion-content>
   <ion-grid no-lines *ngIf="examination">
     <ion-row *ngFor="let commandment of examination.commandments">
-      <ion-col *ngIf="commandment.sins">
+      <ion-col *ngIf="commandment.subjects">
         <eoc-commandment-view [commandment]="commandment" [confession]="confession"></eoc-commandment-view>
       </ion-col>
     </ion-row>
