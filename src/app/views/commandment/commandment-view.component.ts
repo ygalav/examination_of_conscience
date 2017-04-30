@@ -5,6 +5,7 @@ import {ConfessionService} from "../../service/confession.service";
 import {Confession} from "../../model/confession";
 import {SinViewDto} from "./sin-view.dto";
 import {SinSubjectViewDto} from "./sin-subject-view.dto";
+import {SinSubject} from "../../model/sin_subject";
 @Component({
   templateUrl: 'commandment-view.html',
   selector: 'eoc-commandment-view'
@@ -29,18 +30,6 @@ export class CommandmentView implements OnInit {
         this.subjectViews.push(subjectView);
       }
     );
-
-
-    //TODO Remove this way
-    /*this.commandment.sins.forEach(sin => {
-      let sinView = new SinViewDto;
-      sinView.sin = sin;
-
-      if (this.confession) {
-        sinView.selectedInExamination = this.isSinCheckedInConfession(sin, this.commandment, this.confession);
-      }
-      this.sins.push(sinView);
-    });*/
   }
 
   private convertSubjectToDto(subject) {
@@ -75,8 +64,10 @@ export class CommandmentView implements OnInit {
 
   private isCommandmentHasASin(commandment : Commandment, sin : ConcreteSin) : boolean {
     let result = false;
-    if (sin && commandment && commandment.sins) {
-      return commandment.sins.filter(aSin => aSin.name === sin.name).length > 0;
+    //For now lets suppose that all sins will be in single subject
+    if (sin && commandment && commandment.subjects[0] && commandment.subjects[0].sins) {
+      let sins = commandment.subjects[0].sins;
+      return sins.filter(aSin => aSin.name === sin.name).length > 0;
     }
     return result;
   }
@@ -93,15 +84,18 @@ export class CommandmentView implements OnInit {
       commandmentFromConfession = new Commandment;
       commandmentFromConfession.name = commandmentFromUI.name;
       commandmentFromConfession.number = commandmentFromUI.number;
+      let sinSubj = new SinSubject;
+      commandmentFromConfession.subjects = [sinSubj];
     }
 
     //If sin is in the confession - then remove
     if (this.isCommandmentHasASin(commandmentFromConfession, sin)) {
       //Remove sin from commandment
-      commandmentFromConfession.sins = commandmentFromConfession.sins.filter(aSin => aSin.name !== sin.name);
+      let sins = commandmentFromConfession.subjects[0].sins;
+      commandmentFromConfession.subjects[0].sins = sins.filter(aSin => aSin.name !== sin.name);
     }
     else {
-      commandmentFromConfession.sins.push(sin);
+      commandmentFromConfession.subjects[0].sins.push(sin);
     }
 
     //Remove current
