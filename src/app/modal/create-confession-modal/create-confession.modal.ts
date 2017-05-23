@@ -24,8 +24,8 @@ export class CreateConfessionModal {
     this.viewCtrl.dismiss()
   }
 
-  public createConfession(name : string) {
-    this.confessionService.createConfession(name, this.examination.id).then( (confession) => {
+  public createConfession(name : string, pin : string) {
+    this.confessionService.createConfession(name, pin, this.examination.id).then( (confession) => {
       let data = { 'confession' : confession};
       this.viewCtrl.dismiss(data)
     });

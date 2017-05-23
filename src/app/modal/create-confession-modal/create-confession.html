@@ -15,7 +15,15 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <button ion-button color="secondary" (click)="createConfession(name.value)">Створити</button>
+        <ion-item>
+          <ion-label color="primary" stacked>Пін Код</ion-label>
+          <ion-input #pin type="password" min="4" max="8" placeholder="Pin"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button color="secondary" (click)="createConfession(name.value, pin.value)">Створити</button>
       </ion-col>
       <ion-col>
         <button ion-button (click)="dismiss()">

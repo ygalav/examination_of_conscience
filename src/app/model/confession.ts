@@ -5,4 +5,5 @@ export class Confession {
   public commandments : Commandment[] = [];
   public parent : string;
   public finished : boolean;
+  public pin : string;
 }

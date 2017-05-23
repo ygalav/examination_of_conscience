@@ -7,8 +7,8 @@ import {ExaminationCardView} from "../examination-card-view-page/examination-car
 import {CreateConfessionModal} from "../../app/modal/create-confession-modal/create-confession.modal";
 import {Confession} from "../../app/model/confession";
 import {ConfessionService} from "../../app/service/confession.service";
-import {DisplayConfessionComponent} from "../display-confession-page/display-confession.component"; //TODO: Delete this page
-
+import {DisplayConfessionComponent} from "../display-confession-page/display-confession.component";
+import { AlertController } from 'ionic-angular';
 @Component({
   selector: 'examinations-lists',
   templateUrl: 'list-of-examinations.html'
@@ -25,7 +25,8 @@ export class ListOfExaminationsPage implements OnInit {
     public navCtrl: NavController,
     public modalCtrl : ModalController,
     public examinationService: ExaminationService,
-    public confessionService : ConfessionService
+    public confessionService : ConfessionService,
+    public alertCtrl : AlertController
   ) {
 
   }
@@ -38,19 +39,39 @@ export class ListOfExaminationsPage implements OnInit {
   }
 
   showExamination(examinationId, confession) : void {
-    this.navCtrl.push(ExaminationCardView, {
+
+    /*let modal = this.modalCtrl.create(ConfessionLoginModal,
+      {
+        confession : confession,
+        examination_id : examinationId,
+        action : 'showExamination'
+      });
+    modal.present();*/
+
+    this.promptConfessionPin(confession, () => {
+      this.navCtrl.push(ExaminationCardView, {
+        examination_id: examinationId,
+        confession: confession
+      });
+    })
+
+
+    /*this.navCtrl.push(ExaminationCardView, {
       examination_id: examinationId,
       confession: confession
-    });
+    });*/
   }
 
   showConfession() : void {
-    this.confessionService.getActiveConfession().then(confession => {
-      this.confession = confession;
-      this.navCtrl.push(DisplayConfessionComponent, {
-        confession: confession
+    this.promptConfessionPin(this.confession, () => {
+      this.confessionService.getActiveConfession().then(confession => {
+        this.confession = confession;
+        this.navCtrl.push(DisplayConfessionComponent, {
+          confession: confession
+        });
       });
     });
+
   }
 
   showCreateConfessionModal(examination : Examination) : void {
@@ -60,5 +81,45 @@ export class ListOfExaminationsPage implements OnInit {
     });
 
     modal.present();
+  }
+
+  promptConfessionPin(confession: Confession, handler: () => void) {
+    this.alertCtrl.create({
+      title: 'Введіть Пін',
+      inputs: [
+        {
+          name: 'pin',
+          placeholder: 'Пін',
+          type: 'password'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Закрити',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Логін',
+          handler: data => {
+            if (confession.pin === data.pin) {
+              handler();
+            } else {
+              this.showInvalidPinAlert();
+            }
+          }
+        }
+      ]
+    }).present();
+  }
+
+  showInvalidPinAlert() {
+    this.alertCtrl.create({
+      title: 'Не вірний пін',
+      subTitle: 'Ви ввели не вірний пін',
+      buttons: ['Закрити']
+    }).present();
   }
 }
