@@ -40,26 +40,12 @@ export class ListOfExaminationsPage implements OnInit {
 
   showExamination(examinationId, confession) : void {
 
-    /*let modal = this.modalCtrl.create(ConfessionLoginModal,
-      {
-        confession : confession,
-        examination_id : examinationId,
-        action : 'showExamination'
-      });
-    modal.present();*/
-
     this.promptConfessionPin(confession, () => {
       this.navCtrl.push(ExaminationCardView, {
         examination_id: examinationId,
         confession: confession
       });
     })
-
-
-    /*this.navCtrl.push(ExaminationCardView, {
-      examination_id: examinationId,
-      confession: confession
-    });*/
   }
 
   showConfession() : void {
@@ -71,7 +57,6 @@ export class ListOfExaminationsPage implements OnInit {
         });
       });
     });
-
   }
 
   showCreateConfessionModal(examination : Examination) : void {
