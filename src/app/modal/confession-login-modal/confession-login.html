@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Введіть пін код</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label color="primary" stacked>Пін Код</ion-label>
+          <ion-input #pin type="password" min="4" max="8" placeholder="Pin"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button color="secondary" (click)="login(pin.value)">Створити</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="dismiss()">
+          Закрити
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
