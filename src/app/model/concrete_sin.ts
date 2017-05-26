@@ -1,4 +1,3 @@
-import {SinSubject} from "./sin_subject";
 export class ConcreteSin {
   public position: number;
   public name : String;
