@@ -32,7 +32,6 @@ export class ListOfExaminationsPage implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.examinationService.getExaminations("uk").then(
       entries =>
       {
@@ -48,12 +47,18 @@ export class ListOfExaminationsPage implements OnInit {
   }
 
   showExamination(examinationId, confession) : void {
-
-    this.promptConfessionPin(confession, () => {
+    let handler = () => {
       this.navCtrl.push(ExaminationCardView, {
         examination_id: examinationId,
         confession: confession
       });
+    };
+    confession ? this.promptConfessionPin(confession, handler) : handler();
+  }
+
+  closeConfession(confession) : void {
+    this.showConfirmFinishConfessionAlert(confession => {
+      this.confessionService.closeConfession(confession).then(this.confession = null)
     })
   }
 
@@ -115,5 +120,28 @@ export class ListOfExaminationsPage implements OnInit {
       subTitle: 'Ви ввели не вірний пін',
       buttons: ['Закрити']
     }).present();
+  }
+
+  showConfirmFinishConfessionAlert(handler) {
+    let alert = this.alertCtrl.create({
+      title: 'Завершити',
+      message: 'Завершити це пригодування до сповіді і знищити всі дані ?',
+      buttons: [
+        {
+          text: 'Ні',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Так',
+          handler: () => {
+            handler();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }

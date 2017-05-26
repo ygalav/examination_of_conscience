@@ -30,25 +30,32 @@
         </ion-list>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="confession">
-      <ion-col>
-        <h4>Приготування до сповіді</h4>
-      </ion-col>
-    </ion-row>
-    <ion-row  *ngIf="confession">
-      <ion-col>
-        <ion-label>
-          {{confession.name}}
-        </ion-label>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="confession">
-      <ion-col col-6>
-        <button (click)="showExamination(confession.parent, confession)" ion-button outline block>Продовжити</button>
-      </ion-col>
-      <ion-col col-6>
-        <button (click)="showConfession()" ion-button outline block color="secondary">Переглянути</button>
-      </ion-col>
-    </ion-row>
+    <div *ngIf="confession">
+      <ion-row>
+        <ion-col>
+          <h4>Приготування до сповіді</h4>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>
+            {{confession.name}}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <button (click)="showExamination(confession.parent, confession)" ion-button outline block>Продовжити</button>
+        </ion-col>
+        <ion-col col-6>
+          <button (click)="showConfession()" ion-button outline block color="secondary">Переглянути</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button (click)="closeConfession(confession)" ion-button outline block full color="danger">Видалити</button>
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-grid>
 </ion-content>

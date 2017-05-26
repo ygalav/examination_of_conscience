@@ -28,6 +28,10 @@ export class ConfessionService implements OnInit {
     return localforage.setItem(this.CURRENT_CONFESSION_KEY, confession).catch(reason => Promise.reject(reason))
   }
 
+  closeConfession(confession : Confession) : Promise<void> {
+    return localforage.removeItem(this.CURRENT_CONFESSION_KEY);
+  }
+
   createConfession(name : string, pin : string, parentId : string) : Promise<Confession> {
     let confession = new Confession();
     confession.name = name;
