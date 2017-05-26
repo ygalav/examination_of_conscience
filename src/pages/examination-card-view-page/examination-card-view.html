@@ -10,12 +10,31 @@
   <ion-grid no-lines *ngIf="examination">
     <ion-row *ngIf="examination.description">
       <ion-col>
-        <section style="white-space: pre-line; font-size:large" [innerHTML] = 'examination.description'></section>
+        <section style="white-space: pre-line;" [innerHTML] = 'examination.description'></section>
       </ion-col>
     </ion-row>
+    <div *ngIf="examination.prays">
+      <div *ngFor="let pray of examination.prays">
+        <ion-row>
+          <ion-col>
+            <section style="white-space: pre-line; font-size:large" [innerHTML] = 'pray.name'></section>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <p style="white-space: pre-line;" [innerHTML] = 'pray.text'></p>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
     <ion-row *ngFor="let commandment of examination.commandments">
       <ion-col *ngIf="commandment.subjects">
         <eoc-commandment-view [commandment]="commandment" [confession]="confession"></eoc-commandment-view>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="examination.source">
+      <ion-col>
+        <p>Джерело: <a href="{{examination.source.url}}">{{examination.source.label}}</a> </p>
       </ion-col>
     </ion-row>
   </ion-grid>
