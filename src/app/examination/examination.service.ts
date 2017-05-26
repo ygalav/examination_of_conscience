@@ -5,23 +5,25 @@ import 'rxjs/add/operator/toPromise';
 
 import {Examination} from "../model/examination";
 import {ExaminationUrlResolverService} from "./examination-url-resolver.service";
+import {ExaminationsListEntry} from "../model/examinations_list_entry";
 
 @Injectable()
 export class ExaminationService {
+
 
   constructor(
     private http: Http,
     private examinationUrlResolverService : ExaminationUrlResolverService
   ) { }
 
-  getExaminations(language : String) : Examination[] {
-    let examinationOne = new Examination;
-    examinationOne.id = "uk_examination_general";
-    examinationOne.name = "Загальний іспит сумління";
-    let examinationTwo = new Examination;
-    examinationTwo.id = "uk_examination_general";
-    examinationTwo.name = "Іспит сумління для дітей";
-    return [examinationOne, examinationTwo]
+  getExaminations(language : String) : Promise<ExaminationsListEntry[]> {
+    const url = this.examinationUrlResolverService.getUrlForExaminationsList();
+    return this.http.get(url).toPromise().then(response => {
+      console.log("Hitting url:" + url);
+      console.log("Response:");
+      console.log(response.json());
+      return response.json() as ExaminationsListEntry[]
+    })
   }
 
   getExamination(id: string) : Promise<Examination> {

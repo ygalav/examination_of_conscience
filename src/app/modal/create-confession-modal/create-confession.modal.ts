@@ -19,6 +19,7 @@ export class CreateConfessionModal {
   }
   examination : Examination;
   name = 'Іспит сумління';
+  today = new Date;
 
   public dismiss() {
     this.viewCtrl.dismiss()

@@ -32,10 +32,19 @@ export class ListOfExaminationsPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.examinations = this.examinationService.getExaminations("uk")
+
+    this.examinationService.getExaminations("uk").then(
+      entries =>
+      {
+        entries.forEach(entry => {
+          this.examinationService.getExamination(entry.path).then(examination => this.examinations.push(examination))
+        })
+      }
+    );
+
     this.confessionService.getActiveConfession().then(confession => {
       this.confession = confession;
-    });
+    })
   }
 
   showExamination(examinationId, confession) : void {
