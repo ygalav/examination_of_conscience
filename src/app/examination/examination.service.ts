@@ -23,6 +23,8 @@ export class ExaminationService {
       console.log("Response:");
       console.log(response.json());
       return response.json() as ExaminationsListEntry[]
+    }).then(entries => {
+      return entries.filter(entry => entry.language === language)
     })
   }
 
