@@ -4,14 +4,12 @@
       <ion-col>
         <ion-row>
           <ion-col>
-            <h2>{{commandment.name}}</h2>
+            <h2><section style="white-space: pre-line;" [innerHTML] = 'commandment.name'></section></h2>
           </ion-col>
         </ion-row>
-        <ion-row>
+        <ion-row *ngIf="commandment.description">
           <ion-col>
-            <h3 *ngIf="commandment.description">
-              {{commandment.description}}
-            </h3>
+              <section style="white-space: pre-line; font-size: large" [innerHTML] = 'commandment.description'></section>
           </ion-col>
         </ion-row>
       </ion-col>
@@ -23,14 +21,14 @@
           <ion-col>
             <ion-row *ngIf="subject.name">
               <ion-col>
-                <h3>{{subject.name}}</h3>
+                <h3><section style="white-space: pre-line;" [innerHTML] = 'subject.name'></section></h3>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
                 <ion-row *ngFor="let sinView of subject.sinViews">
                   <ion-col>
-                    <p>{{sinView.sin.name}}</p>
+                    <section style="white-space: pre-line;" [innerHTML] = 'sinView.sin.name'></section>
                   </ion-col>
                   <ion-col col-1 *ngIf="confession">
                     <ion-checkbox *ngIf="confession" [(ngModel)]="sinView.selectedInExamination" (click)="toggleCommandment(commandment, sinView.sin)" color="danger">

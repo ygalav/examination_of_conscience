@@ -8,6 +8,11 @@
 </ion-header>
 <ion-content>
   <ion-grid no-lines *ngIf="examination">
+    <ion-row *ngIf="examination.description">
+      <ion-col>
+        <section style="white-space: pre-line; font-size:large" [innerHTML] = 'examination.description'></section>
+      </ion-col>
+    </ion-row>
     <ion-row *ngFor="let commandment of examination.commandments">
       <ion-col *ngIf="commandment.subjects">
         <eoc-commandment-view [commandment]="commandment" [confession]="confession"></eoc-commandment-view>

@@ -2,5 +2,10 @@
   {
     "language" : "uk",
     "path" : "uk_examination_general"
+  },
+  {
+    "language" : "uk",
+    "path" : "uk_examination_general_ds"
   }
+
 ]
